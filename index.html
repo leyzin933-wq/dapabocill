@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Sayangku</title>
+    <title>Untuk Dapa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color1: #ff4d4d; /* Merah cerah */
+            --color2: #ff99cc; /* Pink muda */
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -12,85 +18,155 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fce4ec; /* Warna pink lembut */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Fredoka One', cursive; /* Font super imut */
             overflow: hidden;
-            color: #d81b60;
+            animation: changeBG 3s infinite alternate; /* Animasi background */
+            position: relative;
         }
 
-        .container {
+        /* Animasi ganti background Merah <-> Pink */
+        @keyframes changeBG {
+            0% { background-color: var(--color1); }
+            100% { background-color: var(--color2); }
+        }
+
+        /* Kontainer Utama */
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #b30000; /* Warna teks */
             text-align: center;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 2px solid #f8bbd0;
+            position: relative;
+            padding: 50px;
+            
+            /* Border Bentuk Kucing :) */
+            border: 10px solid #fff;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+            
+            /* Triki Border Kucing dengan CSS mask */
+            /* Ini agak susah di CSS biasa, jadi kita pakai border-radius ekstrem */
+            /* & gambar bayangan kucing di belakang untuk efeknya */
+            border-radius: 100px 100px 30px 30px;
+            position: relative;
+            z-index: 10;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1.2rem;
-        }
-
-        /* Animasi Hati Berterbangan */
-        .heart {
+        
+        /* Telinga Kucing Kiri */
+        .card::before {
+            content: '';
             position: absolute;
-            color: #ff4081;
-            font-size: 20px;
-            user-select: none;
-            animation: move Up 4s linear infinite;
-            opacity: 0;
+            top: -50px; left: 30px;
+            width: 0; height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 70px solid #fff; /* Sama dengan warna border */
+            z-index: -1;
         }
 
-        @keyframes moveUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
+        /* Telinga Kucing Kanan */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50px; right: 30px;
+            width: 0; height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 70px solid #fff; /* Sama dengan warna border */
+            z-index: -1;
         }
+
+        .title {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Elemen Rame yang Bertebaran (Tinggal Pilih Emotnya) */
+        .floating-icon {
+            position: absolute;
+            opacity: 0.8;
+            user-select: none;
+            z-index: 1;
+        }
+
+        /* Animasi permen/susu bergerak membentuk LOVE */
+        @keyframes formHeart {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .love-element {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: formHeart 2s infinite alternate;
+            z-index: 5;
+        }
+
+        .love-element span {
+            font-size: 20px;
+            margin: 2px;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1> kiw kiwww dapaa bocilllllll ❤️</h1>
-        <p> you laik mi or nottt</p>
+    <div class="card">
+        <h1 class="title">dapa bocilllll mungillll</h1>
+        <p class="subtitle">wkwkwk ngejek yaa 😝😜🤪</p>
+    </div>
+
+    <div class="love-element">
+        <span>🍬</span><span>🍼</span><span>🍭</span>
+        <span>🍼</span><span>❤️</span><span>🍬</span>
+        <span>🍭</span><span>🍼</span><span>🍬</span>
+        <span>🍬</span><span>🍭</span>
     </div>
 
     <script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            
-            // Posisi horizontal acak
-            heart.style.left = Math.random() * 100 + "vw";
-            
-            // Ukuran acak
-            heart.style.fontSize = Math.random() * 20 + 10 + "px";
-            
-            // Durasi animasi acak agar alami
-            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-            
-            document.body.appendChild(heart);
+        // Array emoji rame (permen, susu, kucing, emot imut)
+        const icons = ['🍭', '🍬', '🍼', '🍼', '🐱', '✨', '💖', '⭐', '🐶', '🍕', '🥛'];
 
-            // Hapus elemen setelah animasi selesai agar tidak berat
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
+        // Fungsi untuk membuat elemen bertebaran
+        function createFloatingIcon() {
+            const icon = document.createElement('div');
+            icon.classList.add('floating-icon');
+            
+            // Pilih emoji acak
+            icon.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            // Posisi, ukuran, dan durasi acak
+            icon.style.left = Math.random() * 100 + 'vw';
+            icon.style.top = Math.random() * 100 + 'vh';
+            icon.style.fontSize = Math.random() * 20 + 20 + 'px';
+            icon.style.animation = `floatAround ${Math.random() * 5 + 3}s linear infinite`;
+
+            document.body.appendChild(icon);
+
+            // Ganti posisi acak setiap 5 detik
+            setInterval(() => {
+                icon.style.left = Math.random() * 100 + 'vw';
+                icon.style.top = Math.random() * 100 + 'vh';
+            }, Math.random() * 3000 + 2000);
         }
 
-        // Membuat hati setiap 300 milidetik
-        setInterval(createHeart, 300);
+        // Tampilkan 40 elemen bertebaran
+        for (let i = 0; i < 40; i++) {
+            createFloatingIcon();
+        }
     </script>
 </body>
 </html>
