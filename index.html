@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Dapa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <title>Dapa si Bocil Mungil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Mali:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color1: #ff4d4d; /* Merah cerah */
-            --color2: #ff99cc; /* Pink muda */
+            --color1: #ffcdd2; /* Pink Pastel Lembut */
+            --color2: #ff8a80; /* Merah Pastel Imut */
+            --text-color: #d81b60; /* Merah Tua Lucu */
         }
 
         body {
@@ -18,106 +19,169 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Fredoka One', cursive; /* Font super imut */
+            /* Font utama dan alternatif */
+            font-family: 'Fredoka One', cursive; 
             overflow: hidden;
-            animation: changeBG 3s infinite alternate; /* Animasi background */
             position: relative;
+            /* Background transisi warna pastel */
+            animation: changeBG 4s infinite alternate ease-in-out; 
         }
 
-        /* Animasi ganti background Merah <-> Pink */
+        /* Animasi Transisi Warna Background Pastel */
         @keyframes changeBG {
             0% { background-color: var(--color1); }
             100% { background-color: var(--color2); }
         }
 
-        /* Kontainer Utama */
+        /* --- Kontainer Utama (Card Kucing Gembul) --- */
         .card {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #b30000; /* Warna teks */
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--text-color);
             text-align: center;
             position: relative;
-            padding: 50px;
+            padding: 60px 50px 40px; /* Padding extra atas untuk telinga */
+            width: 80%; /* Lebar responsif di HP */
+            max-width: 400px; /* Lebar maksimal di Laptop */
             
-            /* Border Bentuk Kucing :) */
-            border: 10px solid #fff;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+            /* Border Bulat & Bayangan Lembut */
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 15px 30px rgba(216, 27, 96, 0.2);
+            border: 8px solid #fff;
             
-            /* Triki Border Kucing dengan CSS mask */
-            /* Ini agak susah di CSS biasa, jadi kita pakai border-radius ekstrem */
-            /* & gambar bayangan kucing di belakang untuk efeknya */
-            border-radius: 100px 100px 30px 30px;
             position: relative;
             z-index: 10;
+            transform-origin: center;
+            /* Animasi card goyang imut */
+            animation: cardWiggle 3s infinite ease-in-out;
         }
-        
-        /* Telinga Kucing Kiri */
+
+        /* Telinga Kucing Gembul (Kiri) */
         .card::before {
             content: '';
             position: absolute;
-            top: -50px; left: 30px;
-            width: 0; height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 70px solid #fff; /* Sama dengan warna border */
+            top: -45px; left: 35px;
+            width: 70px; height: 70px;
+            background-color: #fff;
+            border-radius: 50% 50% 10% 10%;
             z-index: -1;
+            /* Bayangan untuk telinga */
+            box-shadow: 0 -5px 10px rgba(216, 27, 96, 0.1);
         }
 
-        /* Telinga Kucing Kanan */
+        /* Telinga Kucing Gembul (Kanan) */
         .card::after {
             content: '';
             position: absolute;
-            top: -50px; right: 30px;
-            width: 0; height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 70px solid #fff; /* Sama dengan warna border */
+            top: -45px; right: 35px;
+            width: 70px; height: 70px;
+            background-color: #fff;
+            border-radius: 50% 50% 10% 10%;
             z-index: -1;
+            /* Bayangan untuk telinga */
+            box-shadow: 0 -5px 10px rgba(216, 27, 96, 0.1);
+        }
+        
+        /* Mata Kucing Kecil di Card */
+        .card-eyes {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            font-size: 1.5rem;
+            opacity: 0.7;
         }
 
+        /* --- Teks Super Imut --- */
         .title {
-            font-size: 3rem;
-            margin: 0;
-            text-shadow: 2px 2px 0px #fff;
+            font-size: 2.8rem;
+            margin: 15px 0 5px;
+            text-shadow: 3px 3px 0px #fff;
+            letter-spacing: -1px;
+            font-weight: 700;
         }
+
+        /* Membuat Teks Bergelombang */
+        .title span {
+            display: inline-block;
+            animation: waveText 1.5s infinite ease-in-out;
+        }
+        
+        /* Delay untuk efek gelombang */
+        .title span:nth-child(1) { animation-delay: 0.1s; }
+        .title span:nth-child(2) { animation-delay: 0.2s; }
+        .title span:nth-child(3) { animation-delay: 0.3s; }
+        /* ... tambahkan lagi jika perlu, atau pakai JS ... */
 
         .subtitle {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            font-weight: bold;
+            font-family: 'Mali', cursive; /* Font tulisan tangan imut */
+            font-size: 1.3rem;
+            margin-top: 0;
+            font-weight: 700;
+            color: #ec407a;
+            font-style: italic;
         }
 
-        /* Elemen Rame yang Bertebaran (Tinggal Pilih Emotnya) */
+        /* --- Elemen Bertebaran Super Rame (Imut) --- */
         .floating-icon {
             position: absolute;
-            opacity: 0.8;
+            opacity: 0.9;
             user-select: none;
             z-index: 1;
+            pointer-events: none; /* Tidak menghalangi klik */
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
         }
 
-        /* Animasi permen/susu bergerak membentuk LOVE */
-        @keyframes formHeart {
-            0% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .love-element {
+        /* --- Gumpalan Permen/Susu Bentuk LOVE --- */
+        .love-container {
             position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 160px;
+            z-index: 5;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            width: 150px;
-            height: 150px;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: formHeart 2s infinite alternate;
-            z-index: 5;
+            align-content: center;
+            animation: lovePulse 2s infinite ease-in-out;
+        }
+        
+        .love-container span {
+            font-size: 24px;
+            margin: 2px;
+            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
         }
 
-        .love-element span {
-            font-size: 20px;
-            margin: 2px;
+        /* --- Animasi --- */
+        
+        /* Card Goyang Imut */
+        @keyframes cardWiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        /* Teks Bergelombang */
+        @keyframes waveText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Denyut Love Gumpalan */
+        @keyframes lovePulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+        }
+
+        /* Gerakan Acak untuk Elemen Bertebaran */
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -15px) rotate(5deg); }
+            50% { transform: translate(-10px, 15px) rotate(-5deg); }
+            75% { transform: translate(15px, 10px) rotate(3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
     </style>
@@ -125,46 +189,58 @@
 <body>
 
     <div class="card">
-        <h1 class="title">dapa bocilllll mungillll</h1>
-        <p class="subtitle">  bocilll bauuu pesinggg😝😜🤪</p>
+        <div class="card-eyes">
+            <span>ò_ó</span> </div>
+        
+        <h1 class="title">
+            <span>d</span><span>a</span><span>p</span><span>a</span> 
+            <span>b</span><span>o</span><span>c</span><span>i</span><span>l</span><span>l</span><span>l</span>
+            <span>m</span><span>u</span><span>n</span><span>g</span><span>i</span><span>l</span>
+        </h1>
+        <p class="subtitle">wkwkwk ngejek dikit yaaa 😜😋🎀</p>
     </div>
 
-    <div class="love-element">
-        <span>🍬</span><span>🍼</span><span>🍭</span>
-        <span>🍼</span><span>❤️</span><span>🍬</span>
-        <span>🍭</span><span>🍼</span><span>🍬</span>
+    <div class="love-container">
+        <span>🍬</span><span>🍼</span><span>🍭</span><span>🍬</span>
+        <span>🍼</span><span>❤️</span><span>🍭</span><span>🍼</span>
+        <span>🍭</span><span>🍬</span><span>🍼</span><span>🍭</span>
         <span>🍬</span><span>🍭</span>
     </div>
 
     <script>
-        // Array emoji rame (permen, susu, kucing, emot imut)
-        const icons = ['🍭', '🍬', '🍼', '🍼', '🐱', '✨', '💖', '⭐', '🐶', '🍕', '🥛'];
+        // Array emoji super imut, rame, dan 'ngejek'
+        const icons = [
+            '🍭', '🍬', '🍼', '🥛', '🍦', // Makanan/Minuman
+            '🐱', '🐶', '🐰', '🐻', '🐹', // Hewan Gemoy
+            '✨', '💖', '⭐', '🎈', '🎀', // Dekorasi
+            '😜', '🤪', '😋', '😝', '🤖'  // Emot Lucu
+        ];
 
-        // Fungsi untuk membuat elemen bertebaran
+        // Fungsi untuk membuat satu elemen bertebaran
         function createFloatingIcon() {
             const icon = document.createElement('div');
             icon.classList.add('floating-icon');
             
-            // Pilih emoji acak
+            // Pilih emoji acak dari array
             icon.innerText = icons[Math.floor(Math.random() * icons.length)];
             
-            // Posisi, ukuran, dan durasi acak
+            // Atur posisi awal acak di seluruh layar
             icon.style.left = Math.random() * 100 + 'vw';
             icon.style.top = Math.random() * 100 + 'vh';
-            icon.style.fontSize = Math.random() * 20 + 20 + 'px';
-            icon.style.animation = `floatAround ${Math.random() * 5 + 3}s linear infinite`;
+            
+            // Atur ukuran acak (biar variatif imutnya)
+            icon.style.fontSize = Math.random() * 1.5 + 1.5 + 'rem'; // 1.5rem - 3rem
+            
+            // Atur durasi dan delay animasi acak agar alami
+            const duration = Math.random() * 4 + 4 + 's'; // 4s - 8s
+            const delay = Math.random() * -5 + 's'; // Delay negatif agar langsung bergerak
+            icon.style.animation = `floatAround ${duration} infinite ${delay} ease-in-out`;
 
             document.body.appendChild(icon);
-
-            // Ganti posisi acak setiap 5 detik
-            setInterval(() => {
-                icon.style.left = Math.random() * 100 + 'vw';
-                icon.style.top = Math.random() * 100 + 'vh';
-            }, Math.random() * 3000 + 2000);
         }
 
-        // Tampilkan 40 elemen bertebaran
-        for (let i = 0; i < 40; i++) {
+        // Tampilkan 60 elemen bertebaran (makin rame makin imut!)
+        for (let i = 0; i < 60; i++) {
             createFloatingIcon();
         }
     </script>
